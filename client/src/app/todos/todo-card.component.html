@@ -6,7 +6,7 @@
   <mat-card-content *ngIf="!this.simple">
     <p>Category: <span class="todo-card-category">{{ todo.category }}</span></p>
     <p>Status: <span class="todo-card-status">{{ todo.status }}</span></p>
-    <p>Body: <span class="todo-card-body">{{todo.body}}</a></p>
+    <p>Body: <span class="todo-card-body">{{todo.body}}</span></p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button *ngIf="this.simple" [routerLink]="['/todo', this.todo._id]">VIEW PROFILE</button>
