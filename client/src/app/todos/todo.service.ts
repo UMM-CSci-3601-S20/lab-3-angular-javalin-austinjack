@@ -64,7 +64,7 @@ export class TodoService {
       });
     }
     // Filter by Category
-    if (filters.category){
+    if (filters.category) {
       filters.category = filters.category.toLowerCase();
 
       filteredTodos = filteredTodos.filter(todo =>{

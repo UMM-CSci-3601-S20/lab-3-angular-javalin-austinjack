@@ -9,7 +9,7 @@ import { TodoService } from './todo.service';
   providers: []
 })
 
-export class UserListComponent implements OnInit {
+export class TodoListComponent implements OnInit {
   // These are public so that tests can reference them (.spec.ts)
   public serverFilteredTodos: Todo[];
   public filteredTodos: Todo[];
