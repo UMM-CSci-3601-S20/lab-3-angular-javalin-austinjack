@@ -30,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UserCardComponent } from './users/user-card.component';
 import { UserProfileComponent } from './users/user-profile.component';
+import { TodoCardComponent } from './todos/todo-card.component';
+import { TodoProfileComponent } from './todos/todo-profile.component';
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
