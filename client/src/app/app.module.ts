@@ -24,6 +24,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
 
 import { UserListComponent } from './users/user-list.component';
+import { TodoListComponent } from './todos/todo-list.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './users/user.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -58,6 +59,7 @@ const MATERIAL_MODULES: any[] = [
     UserListComponent,
     UserCardComponent,
     UserProfileComponent,
+    TodoListComponent,
     TodoCardComponent,
   ],
   imports: [
