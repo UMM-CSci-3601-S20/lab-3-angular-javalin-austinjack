@@ -33,7 +33,6 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
-      body: this.todoBody,
       status: this.todoStatus,
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
@@ -45,11 +44,11 @@ export class TodoListComponent implements OnInit {
 
   public updateFilter() {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory });
+      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory, body: this.todoBody });
   }
 
   /**
-   * Starts an asynchronous operation to update the users list
+   * Starts an asynchronous operation to update the todo list
    *
    */
   ngOnInit(): void {
