@@ -18,7 +18,7 @@ describe('Todo list', () => {
 
     // All of the todo cards should have the name we are filtering by
     page.getTodoCards().each(e => {
-      expect(e.element(by.className('todo-card-owner')).getText()).toEqual('owner');
+      expect(e.element(by.className('todo-card-owner')).getText()).toEqual('Fry');
     });
   });
 
