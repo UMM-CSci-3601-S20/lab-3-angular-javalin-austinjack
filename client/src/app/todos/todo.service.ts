@@ -67,7 +67,7 @@ export class TodoService {
     if (filters.category) {
       filters.category = filters.category.toLowerCase();
 
-      filteredTodos = filteredTodos.filter(todo =>{
+      filteredTodos = filteredTodos.filter(todo => {
         return todo.category.toLowerCase().indexOf(filters.category) !== -1;
       });
     }
