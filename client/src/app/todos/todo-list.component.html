@@ -43,10 +43,11 @@
                   </mat-select>
                   <mat-hint>Filtered on server</mat-hint>
                 </mat-form-field>
+
                 <mat-form-field class="input-field">
                   <mat-label>Limit</mat-label>
-                  <input matInput id="todo-limit-input" placeholder="limit amount of todos displayed"
-                  >
+                  <input matInput id="todo-limit-input" type="number" placeholder="limit amount of todos displayed"
+                   min="0" max="500" [(ngModel)]="todoLimit" (input)="getTodosFromServer()">
                   <mat-hint>Filtered in Server</mat-hint>
                 </mat-form-field>
               </div>
@@ -79,12 +80,12 @@
           <mat-card-content>
             <mat-nav-list class="todo-nav-list">
               <h3 mat-subheader>Todos</h3>
-              <a mat-list-item *ngFor="let todo of this.filteredTodos" [routerLink]="['/todos', todo._id]" class="todo-list-item">
+               <mat-list-item *ngFor="let todo of this.filteredTodos" class="todo-list-item">
                 <h3 matLine class="todo-list-owner"> {{todo.owner}} </h3>
                 <p matLine class="todo-list-category"> {{todo.category}} </p>
                 <p matLine class="todo-list-body">{{todo.body}}</p>
                 <p matLine class="todo-list-status">{{todo.status}}</p>
-              </a>
+               </mat-list-item>
             </mat-nav-list>
           </mat-card-content>
         </mat-card>
