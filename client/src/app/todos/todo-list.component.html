@@ -8,14 +8,14 @@
       <mat-card-content fxLayout="column">
           <div fxLayout="row wrap" fxLayoutGap="10px">
               <!-- Examples of filtering in Angular -->
-    
+
               <mat-form-field class="input-field">
                 <mat-label>Owner</mat-label>
                 <input matInput id="todo-owner-input" placeholder="Filter by owner"
                 [(ngModel)]="todoOwner" (input)="updateFilter()">
                 <mat-hint>Filtered in Angular</mat-hint>
               </mat-form-field>
-    
+
               <mat-form-field class="input-field">
                 <mat-label>Category</mat-label>
                 <input matInput id="todo-category-input" placeholder="Filter by category"
@@ -33,7 +33,7 @@
 
             <div fxLayout="row wrap" fxLayoutGap="10px">
                 <!-- Examples of filtering on the server -->
-      
+
                 <mat-form-field class="input-field">
                   <mat-label>Status</mat-label>
                   <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todoStatus" id="todo-status-select">
@@ -42,6 +42,13 @@
                     <mat-option value="incomplete">Incomplete</mat-option>
                   </mat-select>
                   <mat-hint>Filtered on server</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="input-field">
+                  <mat-label>Limit</mat-label>
+                  <input matInput id="todo-limit-input" type="number" placeholder="limit amount of todos displayed"
+                   min="0" max="500" [(ngModel)]="todoLimit" (input)="getTodosFromServer()">
+                  <mat-hint>Filtered in Server</mat-hint>
                 </mat-form-field>
               </div>
               <br>
@@ -62,30 +69,30 @@
     <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError" >
       <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->
       <div [ngSwitch]="viewType">
-  
+
         <!-- Card grid view -->
         <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="user-cards-container">
           <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo" fxFlex="1 1 280px"></app-todo-card>
         </div>
-  
+
         <!-- List view -->
         <mat-card *ngSwitchCase="'list'">
           <mat-card-content>
             <mat-nav-list class="todo-nav-list">
               <h3 mat-subheader>Todos</h3>
-              <a mat-list-item *ngFor="let todo of this.filteredTodos" [routerLink]="['/todos', todo._id]" class="todo-list-item">
+               <mat-list-item *ngFor="let todo of this.filteredTodos" class="todo-list-item">
                 <h3 matLine class="todo-list-owner"> {{todo.owner}} </h3>
                 <p matLine class="todo-list-category"> {{todo.category}} </p>
                 <p matLine class="todo-list-body">{{todo.body}}</p>
                 <p matLine class="todo-list-status">{{todo.status}}</p>
-              </a>
+               </mat-list-item>
             </mat-nav-list>
           </mat-card-content>
         </mat-card>
-  
+
       </div>
     </div>
-  
+
     <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
     <ng-template #todosError>
       <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todo-error">
@@ -98,6 +105,6 @@
         </mat-error>
       </div>
     </ng-template>
-  
+
   </div>
-  
+
