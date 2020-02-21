@@ -33,7 +33,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { UserCardComponent } from './users/user-card.component';
 import { UserProfileComponent } from './users/user-profile.component';
 import { TodoCardComponent } from './todos/todo-card.component';
-import { TodoListComponent } from './todos/todo-list.component';
 
 
 const MATERIAL_MODULES: any[] = [
