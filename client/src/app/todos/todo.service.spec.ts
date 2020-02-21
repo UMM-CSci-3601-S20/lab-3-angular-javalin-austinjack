@@ -92,14 +92,14 @@ describe('Todo service: ', () => {
 
     it('getTodos() calls api/todos with multiple filter parameters', () => {
 
-        todoService.getTodos({ category: 'work', status: false, body: 'Is this the Krusty Crab'}).subscribe(
+        todoService.getTodos({ category: 'work', body: 'Is this the Krusty Crab'}).subscribe(
           todos => expect(todos).toBe(testTodos)
         );
 
         // Specify that (exactly) one request will be made to the specified URL with the role parameter.
         const req = httpTestingController.expectOne(
           (request) => request.url.startsWith(todoService.todoUrl)
-            && request.params.has('category') && request.params.has('status') && request.params.has('body')
+            && request.params.has('category') && request.params.has('body')
         );
 
         // Check that the request made to that URL was a GET request.
@@ -108,7 +108,6 @@ describe('Todo service: ', () => {
         // Check that the role parameters are correct
         // is not toBeFalse because since false = false tobeFalse returns true when that function needs to be false
         expect(req.request.params.get('category')).toEqual('work');
-        expect(req.request.params.get('status')).toBeTrue();
         expect(req.request.params.get('body')).toEqual('Is this the Krusty Crab');
 
         req.flush(testTodos);
