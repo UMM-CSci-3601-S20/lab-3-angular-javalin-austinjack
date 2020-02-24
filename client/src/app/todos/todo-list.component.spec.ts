@@ -116,4 +116,8 @@ describe('Misbehaving Todo List', () => {
             fixture.detectChanges();
         });
     }));
+    it('generates an error if we don\'t set up a TodoListService', () => {
+      // Since the observer throws an error, we don't expect users to be defined.
+      expect(todoList.serverFilteredTodos).toBeUndefined();
+    });
 });
