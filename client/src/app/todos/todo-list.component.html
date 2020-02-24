@@ -71,7 +71,7 @@
       <div [ngSwitch]="viewType">
 
         <!-- Card grid view -->
-        <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="user-cards-container">
+        <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
           <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo" fxFlex="1 1 280px"></app-todo-card>
         </div>
 

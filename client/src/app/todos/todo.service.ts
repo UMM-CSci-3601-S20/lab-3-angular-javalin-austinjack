@@ -26,7 +26,7 @@ export class TodoService {
       if (filters.category) {
         httpParams = httpParams.set('category', filters.category);
       }
-      if (filters.limit){
+      if (filters.limit) {
         httpParams = httpParams.set('limit', filters.limit.toString());
       }
     }
