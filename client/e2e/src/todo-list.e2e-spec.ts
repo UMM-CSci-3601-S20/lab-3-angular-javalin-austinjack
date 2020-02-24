@@ -76,6 +76,8 @@ describe('Todo list', () => {
     page.getTodoListItems().each(e => {
       expect(e.element(by.className('todo-list-status')).getText()).toEqual('true');
     });
+    expect(page.getTodoCards().count()).toEqual(0); // There should be no cards
+    expect(page.getTodoListItems().count()).toBeGreaterThan(0);
   });
   it('Should input an owner, category, body, and select a status, and check the correct todo is returned', () => {
     page.typeInput('todo-owner-input', 'Fry');
@@ -84,5 +86,9 @@ describe('Todo list', () => {
     page.selectMatSelectValue('todo-status-select', 'incomplete');
 
     expect(page.getTodoCards().count()).toEqual(1);
+  });
+  it('Should type a limit and get that amount of cards back', () => {
+    page.typeInput('todo-limit-input', '10');
+    expect(page.getTodoCards().count()).toEqual(10);
   });
 });

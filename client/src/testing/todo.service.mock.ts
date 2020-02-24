@@ -41,12 +41,4 @@ export class MockTodoService extends TodoService {
     // Just return the test todos regardless of what filters are passed in
     return of(MockTodoService.testTodos);
   }
-
-  getTodoById(id: string): Observable<Todo> {
-    if (id === MockTodoService.testTodos[0]._id) {
-      return of(MockTodoService.testTodos[0]);
-    } else {
-      return of(null);
-    }
-  }
 }
