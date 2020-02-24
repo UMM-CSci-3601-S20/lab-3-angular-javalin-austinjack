@@ -89,6 +89,37 @@ describe('Todo service: ', () => {
 
         req.flush(testTodos);
       });
+    it('getTodos() calls api/todos with filter parameter \'complete\'', () => {
+
+        todoService.getTodos({ status: 'complete' }).subscribe(
+          todos => expect(todos).toBe(testTodos)
+        );
+
+        // Specify that (exactly) one request will be made to the specified URL with the role parameter.
+        const req = httpTestingController.expectOne(
+          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
+        );
+        // Check that the request made to that URL was a GET request.
+        expect(req.request.method).toEqual('GET');
+        expect(req.request.params.get('status')).toEqual('complete');
+        req.flush(testTodos);
+      });
+    it('getTodos() calls api/todos with filter parameter \'10\'', () => {
+
+        todoService.getTodos({ limit: 10 }).subscribe(
+          todos => expect(todos).toBe(testTodos)
+        );
+
+        // Specify that (exactly) one request will be made to the specified URL with the role parameter.
+        const req = httpTestingController.expectOne(
+          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('limit')
+        );
+        // Check that the request made to that URL was a GET request.
+        expect(req.request.method).toEqual('GET');
+        // Check that the role parameter was 'admin'
+        expect(req.request.params.get('limit')).toEqual('10');
+        req.flush(testTodos);
+      });
 
     it('getTodos() calls api/todos with multiple filter parameters', () => {
 
@@ -125,4 +156,21 @@ describe('Todo service: ', () => {
         expect(req.request.method).toEqual('GET');
         req.flush(targetTodo);
       });
+
+    it('filterTodos() filters by owner', () => {
+        expect(testTodos.length).toBe(3);
+        const todoOwner = 'st';
+        expect(todoService.filterTodos(testTodos, { owner: todoOwner }).length).toBe(2);
+      });
+    it('filterTodos() filters by body', () =>{
+        expect(testTodos.length).toBe(3);
+        const todoBody = 'Take an arrow to the knee';
+        expect(todoService.filterTodos(testTodos, {body: todoBody}).length).toBe(1);
+    });
+    it('filterTodos() filters by category', () =>{
+      expect(testTodos.length).toBe(3);
+      const todoCategory = 'work';
+      expect(todoService.filterTodos(testTodos, {category: todoCategory}).length).toBe(1);
+  });
+
 });
