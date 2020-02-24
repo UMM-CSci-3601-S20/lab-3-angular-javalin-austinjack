@@ -77,4 +77,12 @@ describe('Todo list', () => {
       expect(e.element(by.className('todo-list-status')).getText()).toEqual('true');
     });
   });
+  it('Should input an owner, category, body, and select a status, and check the correct todo is returned', () => {
+    page.typeInput('todo-owner-input', 'Fry');
+    page.typeInput('todo-body-input', 'Ipsum esse est ullamco mag');
+    page.typeInput('todo-category-input', 'video games');
+    page.selectMatSelectValue('todo-status-select', 'incomplete');
+
+    expect(page.getTodoCards().count()).toEqual(1);
+  });
 });
